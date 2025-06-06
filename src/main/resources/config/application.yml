@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: car-repair-shop
+
+  datasource:
+    username: postgres
+    password: 7777
+    url: jdbc:postgresql://localhost:5432/notification_service
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
