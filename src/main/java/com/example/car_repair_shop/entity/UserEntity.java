@@ -8,13 +8,13 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -26,7 +26,7 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
     @Column(name = "password", nullable = false)
@@ -36,19 +36,17 @@ public class UserEntity {
     @Column(name = "role", nullable = false)
     private Role role;
 
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "email")
+    private String email;
+
+    @CreationTimestamp
     @Column(name = "created_date")
-    private Date createdDate;
+    private LocalDateTime createdDate;
 
+    @UpdateTimestamp
     @Column(name = "last_modified_date")
-    private Date lastModifiedDate;
-
-    @PrePersist
-    protected void onCreate() {
-        createdDate = new Date();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        lastModifiedDate = new Date();
-    }
+    private LocalDateTime lastModifiedDate;
 }
