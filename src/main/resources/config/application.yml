@@ -5,8 +5,14 @@ spring:
   datasource:
     username: postgres
     password: 7777
-    url: jdbc:postgresql://localhost:5432/notification_service
+    url: jdbc:postgresql://localhost:5432/car_repair_shop
   jpa:
     generate-ddl: true
     hibernate:
       ddl-auto: update
+
+settings:
+  jwt:
+    secret: UonenJV2jGbeFxpTbSANXHY9rQopCM57lBzMLaFtVYilrXtBlk6ptJF6mi2CCBkK
+    accessLifetime: 24h
+    refreshLifetime: 48h

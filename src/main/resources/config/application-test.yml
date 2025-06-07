@@ -10,3 +10,9 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
+
+settings:
+  jwt:
+    secret: UonenJV2jGbeFxpTbSANXHY9rQopCM57lBzMLaFtVYilrXtBlk6ptJF6mi2CCBkK
+    accessLifetime: 24h
+    refreshLifetime: 48h
