@@ -32,7 +32,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             var authToken = new UsernamePasswordAuthenticationToken(
                     username,
                     null,
-                    Collections.singletonList(new SimpleGrantedAuthority(jwtUtils.getRole(token)))
+                    Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + jwtUtils.getRole(token)))
             );
 
             authToken.setDetails(jwtUtils.getDetails(token));

@@ -14,6 +14,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,6 +46,7 @@ public class OrderController {
         return ResponseEntity.ok().body(orderService.getOrder(id));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @GetMapping("/by-customer/{customerId}")
     public ResponseEntity<PageDto<OrderDto>> getByCustomer(@PathVariable Long customerId,
                                                            @RequestParam(value = "size", defaultValue = "20") int size,
@@ -52,6 +54,7 @@ public class OrderController {
         return ResponseEntity.ok().body(orderService.getOrdersByCustomer(customerId, page, size));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @GetMapping
     public ResponseEntity<PageDto<OrderDto>> getByStatus(@RequestParam OrderStatus status,
                                                          @RequestParam(value = "size", defaultValue = "20") int size,
@@ -59,6 +62,7 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrders(status, page, size));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @PatchMapping("/{id}/status")
     public ResponseEntity<OrderDto> changeStatus(@PathVariable UUID id,
                                                  @RequestBody @Valid ChangeOrderStatusRequest request) {
@@ -70,6 +74,7 @@ public class OrderController {
         return ResponseEntity.ok(orderStatusHistoryService.getStatusHistory(id));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @PostMapping("/{id}/status-async")
     public ResponseEntity<Void> changeStatusAsync(@PathVariable UUID id,
                                                   @RequestBody ChangeOrderStatusRequest request) {
