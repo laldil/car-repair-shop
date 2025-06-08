@@ -4,6 +4,7 @@ import com.example.car_repair_shop.dto.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -18,7 +19,8 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler({UsernameNotFoundException.class, InvalidTokenException.class,
-            NotFoundException.class, MethodArgumentTypeMismatchException.class, MissingServletRequestParameterException.class})
+            NotFoundException.class, MethodArgumentTypeMismatchException.class, HttpMessageNotReadableException.class,
+            MissingServletRequestParameterException.class, IllegalArgumentException.class})
     public ResponseEntity<ErrorResponse> handleBadRequestExceptions(Exception e) {
         log.warn(e.getMessage());
         return buildResponse(e.getMessage(), HttpStatus.BAD_REQUEST);

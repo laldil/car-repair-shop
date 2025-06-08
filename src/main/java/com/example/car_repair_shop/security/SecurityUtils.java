@@ -15,6 +15,11 @@ public class SecurityUtils {
         return (Long) ((Map<String, Object>) authInfo.getDetails()).get("id");
     }
 
+    public static String getCurrentUsername() {
+        var authInfo = getAuthInfo();
+        return (String) ((Map<String, Object>) authInfo.getDetails()).get("username");
+    }
+
     public static boolean hasRole(Role role) {
         var authInfo = getAuthInfo();
         Collection<? extends GrantedAuthority> authorities = authInfo.getAuthorities();
