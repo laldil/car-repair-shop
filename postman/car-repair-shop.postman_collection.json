@@ -1,0 +1,404 @@
+{
+	"info": {
+		"_postman_id": "9709ad6a-1d1a-46cd-a7e9-51fc5f19850a",
+		"name": "car-repair-shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20813516"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "REGISTER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"username\",\r\n    \"password\":\"password\",\r\n    \"role\":\"EMPLOYEE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REFRESH TOKEN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\":\"token\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/refresh",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"username\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "create order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTc0OTQ5MDAzMiwiaWQiOjEsInJvbGUiOiJFTVBMT1lFRSJ9.Z4zK2eL8M5NBzUeiAo50RDaRHr30SoayGNBRPm60pPDR9UPF-p4FqHGMEgLf7egI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carNumber\": \"A777AA\",\r\n    \"carModel\": \"BMW M5\",\r\n    \"description\": \"Как обычно\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get order by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTc0OTQ1MTA0OSwiaWQiOjQsInJvbGUiOiJFTVBMT1lFRSJ9.zlmKXiDpDQC4qcgQPgutq9WE5bEzy5A2wP58ZSpBkPS5QEl3psBuY2GUjv-2clNn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/orders/951b3d3a-8f52-467d-b129-f9650ac9662a",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"951b3d3a-8f52-467d-b129-f9650ac9662a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get order by customer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTc0OTQ1MTA0OSwiaWQiOjQsInJvbGUiOiJFTVBMT1lFRSJ9.zlmKXiDpDQC4qcgQPgutq9WE5bEzy5A2wP58ZSpBkPS5QEl3psBuY2GUjv-2clNn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/orders/by-customer/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"by-customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get order by status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTc0OTQ1MTA0OSwiaWQiOjQsInJvbGUiOiJFTVBMT1lFRSJ9.zlmKXiDpDQC4qcgQPgutq9WE5bEzy5A2wP58ZSpBkPS5QEl3psBuY2GUjv-2clNn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carNumber\": \"A777AA\",\r\n    \"carModel\": \"BMW M5\",\r\n    \"description\": \"Постукивает под капотом, когда завожу машину\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/orders?status=NEW",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "NEW"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update order status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTc0OTQ1MTA0OSwiaWQiOjQsInJvbGUiOiJFTVBMT1lFRSJ9.zlmKXiDpDQC4qcgQPgutq9WE5bEzy5A2wP58ZSpBkPS5QEl3psBuY2GUjv-2clNn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newStatus\": \"ACCEPTED\",\r\n    \"comment\": \"Приняли\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/orders/951b3d3a-8f52-467d-b129-f9650ac9662a/status",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"951b3d3a-8f52-467d-b129-f9650ac9662a",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get order status history",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTc0OTQ1MTA0OSwiaWQiOjQsInJvbGUiOiJFTVBMT1lFRSJ9.zlmKXiDpDQC4qcgQPgutq9WE5bEzy5A2wP58ZSpBkPS5QEl3psBuY2GUjv-2clNn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/orders/951b3d3a-8f52-467d-b129-f9650ac9662a/history",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"951b3d3a-8f52-467d-b129-f9650ac9662a",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update order status async",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTc0OTQ1MTA0OSwiaWQiOjQsInJvbGUiOiJFTVBMT1lFRSJ9.zlmKXiDpDQC4qcgQPgutq9WE5bEzy5A2wP58ZSpBkPS5QEl3psBuY2GUjv-2clNn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newStatus\": \"ACCEPTED\",\r\n    \"comment\": \"Приняли\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/orders/68854659-7034-4475-9e34-1a63203234f7/status-async",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"68854659-7034-4475-9e34-1a63203234f7",
+								"status-async"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get all users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTc0OTQ5MzA3MSwiaWQiOjQsInJvbGUiOiJFTVBMT1lFRSJ9.rT2dtkFNvEHyoWmPxryBbcdqS0hlNp0EmF2mNmKdWDWfye9jIhCz7fQ4WAIVfcOd",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
