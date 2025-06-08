@@ -19,4 +19,6 @@ public interface OrderService {
     PageDto<OrderDto> getOrders(OrderStatus status, int page, int size);
 
     OrderDto changeStatus(UUID id, ChangeOrderStatusRequest request);
+
+    OrderDto changeStatus(UUID id, ChangeOrderStatusRequest request, String changedBy);
 }

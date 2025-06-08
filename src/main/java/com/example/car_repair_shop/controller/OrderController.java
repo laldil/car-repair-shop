@@ -6,6 +6,8 @@ import com.example.car_repair_shop.dto.order.CreateOrderRequest;
 import com.example.car_repair_shop.dto.order.OrderDto;
 import com.example.car_repair_shop.dto.order.OrderStatusHistoryDto;
 import com.example.car_repair_shop.entity.enums.OrderStatus;
+import com.example.car_repair_shop.security.SecurityUtils;
+import com.example.car_repair_shop.service.order.AsyncOrderService;
 import com.example.car_repair_shop.service.order.OrderService;
 import com.example.car_repair_shop.service.order.OrderStatusHistoryService;
 import jakarta.validation.Valid;
@@ -31,6 +33,7 @@ public class OrderController {
 
     private final OrderService orderService;
     private final OrderStatusHistoryService orderStatusHistoryService;
+    private final AsyncOrderService asyncOrderService;
 
     @PostMapping
     public ResponseEntity<OrderDto> createOrder(@Valid @RequestBody CreateOrderRequest request) {
@@ -65,5 +68,12 @@ public class OrderController {
     @GetMapping("/{id}/history")
     public ResponseEntity<List<OrderStatusHistoryDto>> getOrderHistory(@PathVariable UUID id) {
         return ResponseEntity.ok(orderStatusHistoryService.getStatusHistory(id));
+    }
+
+    @PostMapping("/{id}/status-async")
+    public ResponseEntity<Void> changeStatusAsync(@PathVariable UUID id,
+                                                  @RequestBody ChangeOrderStatusRequest request) {
+        asyncOrderService.submitStatusChange(id, request, SecurityUtils.getCurrentUsername());
+        return ResponseEntity.accepted().build();
     }
 }

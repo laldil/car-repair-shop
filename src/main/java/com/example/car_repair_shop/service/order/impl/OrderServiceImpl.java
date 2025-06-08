@@ -68,6 +68,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto changeStatus(UUID id, ChangeOrderStatusRequest request) {
+        return changeStatus(id, request, SecurityUtils.getCurrentUsername());
+    }
+
+    @Override
+    public OrderDto changeStatus(UUID id, ChangeOrderStatusRequest request, String changedBy) {
         var order = orderRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Order with id %s not found".formatted(id)));
 
@@ -82,7 +87,7 @@ public class OrderServiceImpl implements OrderService {
         order = orderRepository.save(order);
 
         eventPublisher.publishEvent(new OrderStatusChangedEvent(
-                order.getId(), oldStatus, newStatus, request.comment(), SecurityUtils.getCurrentUsername()
+                order.getId(), oldStatus, newStatus, request.comment(), changedBy
         ));
 
         return OrderMapper.MAPPER.mapToDto(order);
