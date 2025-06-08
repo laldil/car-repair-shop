@@ -9,6 +9,7 @@
 - **Spring Data JPA** + PostgreSQL
 - **Spring Kafka** (Consumer + Producer)
 - **Lombok**, **MapStruct**
+- **Swagger**
 - **Docker, Docker Compose**
 
 ---
@@ -25,7 +26,8 @@
    docker-compose up
    ```
 3. Приложение будет доступно по адресам:
-- API: localhost:8080
+- API: http://localhost:8080
+- Swagger: http://localhost:8080/swagger-ui/index.html
 - PostgreSQL: localhost:5433
 - Kafka (KRaft): localhost:9092
 
